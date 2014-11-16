@@ -12,9 +12,7 @@ RUN mkdir -p /app/kennedysean \
   && git clone https://github.com/ksean/kennedysean.git /app/kennedysean
   
 RUN chown -R root:www-data /var/www
-RUN chmod u+rwx,g+rx,o+rx /var/www
 RUN chown -R root:www-data /app
-RUN chmod u+rwx,g+rx,o+rx /app
 
 RUN a2enmod rewrite
 RUN a2enmod expires
