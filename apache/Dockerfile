@@ -16,7 +16,6 @@ RUN chown -R root:www-data /app
 
 RUN a2enmod rewrite
 RUN a2enmod expires
-RUN a2enmod deflate
 RUN a2enmod headers
 
 ENV APACHE_RUN_USER www-data
