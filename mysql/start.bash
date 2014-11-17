@@ -1,9 +1,14 @@
 #!/bin/bash
 
+source ./config/config
+
+chmod 644 /etc/mysql/conf.d/mysqld_charset.cnf
+chmod 644 /etc/mysql/conf.d/my.cnf
+
 if [ ! -d /data/mysql ]; then
     mysql_install_db --datadir=/data/mysql
     echo "1. Starting MySQL"
-    /usr/bin/mysqld_safe --datadir=/data/mysql > /dev/null 2>&1 &
+    /usr/bin/mysqld_safe --datadir=/data/mysql> /dev/null 2>&1 &
 
     RET=1
     while [[ $RET -ne 0 ]]; do
@@ -13,13 +18,16 @@ if [ ! -d /data/mysql ]; then
         RET=$?
     done
 
-    PASS='temp123'
-    echo "2. Creating MySQL user"
-    mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$PASS'"
+    echo "2. Creating MySQL admin"
+    mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$ADMIN_PASS'"
     mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
+
+    echo "3. Creating wordpress user"
+    mysql -uroot -e "CREATE USER 'wordpress'@'%' IDENTIFIED BY '$WORDPRESS_PASS'"
+    mysql -uroot -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' WITH GRANT OPTION"
     mysql -uroot -e "CREATE DATABASE wordpress"
 
-    echo "3. Shutting down after setup"
+    echo "4. Shutting down after setup"
     mysqladmin -uroot shutdown
 else
 

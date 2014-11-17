@@ -1,0 +1,15 @@
+[Unit]
+Description=Dynamic ambassador for MySQL
+After=etcd-haproxy.service
+BindsTo=etcd-haproxy.service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull polvi/dynamic-etcd-amb
+ExecStart=/usr/bin/docker run --link etcd-haproxy.service:etcd --rm --name %n -p ${COREOS_PRIVATE_IPV4}:3306:3306 polvi/dynamic-etcd-amb mysql-A 3306
+ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+X-ConditionMachineOf=etcd-haproxy.service

@@ -1,0 +1,13 @@
+[Unit]
+Description=Mysql server service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull ksean/mysql
+ExecStart=/usr/bin/docker run -d -v /data --name %n -p ${COREOS_PRIVATE_IPV4}::80 ksean/mysql
+ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+X-Conflicts=apache.service

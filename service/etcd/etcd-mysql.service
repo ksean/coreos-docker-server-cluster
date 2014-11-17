@@ -1,5 +1,7 @@
 [Unit]
-Description=Simple Apache ambassador 2
+Description=MySQL service etcd ambassador
+After=mysql.service
+BindsTo=mysql.service
 
 [Service]
 ExecStartPre=-/usr/bin/docker kill %n
@@ -9,4 +11,4 @@ ExecStart=/usr/bin/docker run --rm --name %n polvi/simple-amb 172.17.42.1:4001
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-X-Conflicts=apache.service
+X-ConditionMachineOf=mysql.service

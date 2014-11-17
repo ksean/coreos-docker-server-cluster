@@ -1,5 +1,5 @@
 [Unit]
-Description=Simple Apache ambassador
+Description=Apache service etcd ambassador
 After=apache.service
 BindsTo=apache.service
 
