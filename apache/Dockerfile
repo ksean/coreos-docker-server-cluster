@@ -25,7 +25,7 @@ RUN mkdir -p /app/www/kennedysean \
  && rm -rf /var/www \
  && ln -s /app/www /var \
  && git clone https://github.com/ksean/kennedysean.git /app/www/kennedysean
- && git clone git@bitbucket.org:byteamp/northofthegrid.com.git /app/www/northofthegrid
+ && git clone -b feature_coreos git@bitbucket.org:byteamp/northofthegrid.com.git /app/www/northofthegrid
 
 RUN chown -R root:www-data /var/www
 RUN chown -R root:www-data /app
