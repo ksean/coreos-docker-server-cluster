@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./config/config
+source /etc/mysql/conf.d/pass_config
 
 chmod 644 /etc/mysql/conf.d/mysqld_charset.cnf
 chmod 644 /etc/mysql/conf.d/my.cnf
