@@ -29,7 +29,7 @@ if [ ! -d /data/mysql ]; then
 
     echo "4. Shutting down after setup"
     mysqladmin -uroot shutdown
-else
+fi
 
 echo "=> Running MySQL Server"
 exec mysqld_safe --datadir=/data/mysql
