@@ -1,16 +1,26 @@
+# Build using ubuntu 14.04 image
 FROM ubuntu:14.04
+
+# Author
 MAINTAINER ksean
 
-RUN apt-get update
+# Update packages
+RUN apt-get -y update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 curl git
+# Install apache and php
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 git php5 libapache2-mod-php5 php5-mcrypt
+
+# Install mysql mods
+RUN apt-get -y libapache2-mod-auth-mysql php5-mysql
 
 # Add github repo
-RUN mkdir -p /app/kennedysean \
-  && rm -rf /var/www/html \
-  && ln -s /app/kennedysean /var/www \
-  && git clone https://github.com/ksean/kennedysean.git /app/kennedysean
-  
+RUN mkdir -p /app/www/kennedysean \
+ && mkdir -p /app/www/northofthegrid \
+ && rm -rf /var/www \
+ && ln -s /app/www /var \
+ && git clone https://github.com/ksean/kennedysean.git /app/www/kennedysean
+ && git clone https://github.com/ksean/kennedysean.git /app/www/kennedysean
+
 RUN chown -R root:www-data /var/www
 RUN chown -R root:www-data /app
 
