@@ -1,4 +1,4 @@
-FROM dockerfile/ubuntu
+FROM ubuntu:14.04
 
 # Install Haproxy.
 RUN \
@@ -10,7 +10,6 @@ RUN \
 
 # Add files.
 ADD haproxy.cfg /etc/haproxy/haproxy.cfg
-ADD rsyslog.conf /etc/rsyslog.d/haproxy.conf
 ADD start.bash /haproxy-start
 
 # Define mountable directories.

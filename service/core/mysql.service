@@ -6,8 +6,8 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/mysql
-ExecStart=/usr/bin/docker run -v /data/mysql:/data/mysql --name %n -p ${COREOS_PRIVATE_IPV4}::3306 ksean/mysql
+ExecStart=/usr/bin/docker run --name %n --volumes-from ksean/mysql-data -p ${COREOS_PRIVATE_IPV4}::3306 ksean/mysql
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-X-Conflicts=apache.service
+MachineOf=mysql-data.service

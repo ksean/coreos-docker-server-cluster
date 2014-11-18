@@ -11,4 +11,4 @@ ExecStart=/usr/bin/docker run --link etcd-apache.service:etcd -v /var/run/docker
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-X-ConditionMachineOf=etcd-apache.service
+MachineOf=etcd-apache.service

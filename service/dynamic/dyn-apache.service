@@ -2,6 +2,7 @@
 Description=Dynamic ambassador for Apache
 After=etcd-haproxy.service
 BindsTo=etcd-haproxy.service
+BindsTo=etcd-apache.service
 
 [Service]
 EnvironmentFile=/etc/environment
@@ -12,4 +13,4 @@ ExecStart=/usr/bin/docker run --link etcd-haproxy.service:etcd --rm --name %n -p
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-X-ConditionMachineOf=etcd-haproxy.service
+MachineOf=etcd-haproxy.service
