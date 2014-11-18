@@ -53,7 +53,5 @@ RUN ln -s /etc/apache2/sites-available/northofthegrid.conf /etc/apache2/sites-en
 ADD apache2.conf /app/apache2.conf
 RUN cp -f /app/apache2.conf /etc/apache2
 
-VOLUME["/var/www/northofthegrid"]
-
 ENTRYPOINT ["/usr/sbin/apache2ctl"]
 CMD ["-D", "FOREGROUND"]
