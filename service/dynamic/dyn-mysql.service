@@ -2,7 +2,6 @@
 Description=Dynamic ambassador for MySQL
 After=etcd-haproxy.service
 BindsTo=etcd-haproxy.service
-BindsTo=etcd-mysql.service
 
 [Service]
 EnvironmentFile=/etc/environment
