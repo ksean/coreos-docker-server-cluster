@@ -33,8 +33,8 @@ RUN ln -s /etc/apache2/sites-available/kennedysean.conf /etc/apache2/sites-enabl
 RUN ln -s /etc/apache2/sites-available/northofthegrid.conf /etc/apache2/sites-enabled/
 
 # Add apache config
-ADD apache2.conf ~/apache2.conf
-RUN cp -f ~/apache2.conf /etc/apache2
+ADD apache2.conf /root/apache2.conf
+RUN cp -f /root/apache2.conf /etc/apache2
 
 ENTRYPOINT ["/usr/sbin/apache2ctl"]
 CMD ["-D", "FOREGROUND"]
