@@ -1,5 +1,8 @@
 FROM ubuntu:14.04
 
+RUN apt-get -y update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git
+
 RUN mkdir /root/.ssh
 ADD config/ba_rsa /root/.ssh/
 RUN chmod 600 /root/.ssh/ba_rsa
