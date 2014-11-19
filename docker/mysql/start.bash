@@ -5,7 +5,8 @@ source /etc/mysql/conf.d/pass_config
 chmod 644 /etc/mysql/conf.d/mysqld_charset.cnf
 chmod 644 /etc/mysql/conf.d/my.cnf
 
-if [ ! -d /data/mysql ]; then
+files=(/data/mysql/*)
+if [ ${#files[@]} -gt 0 ]; then
     mysql_install_db --datadir=/data/mysql
     echo "1. Starting MySQL"
     /usr/bin/mysqld_safe --datadir=/data/mysql> /dev/null 2>&1 &
