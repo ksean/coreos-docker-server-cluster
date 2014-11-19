@@ -7,7 +7,7 @@ RUN rm -rf /var/lib/mysql/*
 
 ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 ADD my.cnf /etc/mysql/conf.d/my.cnf
-ADD config/config /etc/mysql/conf.d/pass_config
+ADD config/mysql /etc/mysql/conf.d/pass_config
 
 ADD start.bash /start.bash
 RUN chmod +x start.bash

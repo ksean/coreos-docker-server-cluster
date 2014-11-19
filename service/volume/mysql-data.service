@@ -8,6 +8,3 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/mysql-data
 ExecStart=/usr/bin/docker run --name %n -v /data/mysql ksean/mysql-data /bin/bash
 ExecStop=/usr/bin/docker stop -t 3 %n
-
-[X-Fleet]
-Conflicts=apache.service

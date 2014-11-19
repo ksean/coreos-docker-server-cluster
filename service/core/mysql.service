@@ -10,4 +10,4 @@ ExecStart=/usr/bin/docker run --name %n --volumes-from ksean/mysql-data -p ${COR
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-MachineOf=mysql-data.service
+Conflicts=apache.service

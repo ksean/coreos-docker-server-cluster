@@ -10,4 +10,4 @@ ExecStart=/usr/bin/docker run --name %n -v /var/log/apache2 ksean/apache-log /bi
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-MachineOf=apache.service
+MachineOf=apache-data.service
