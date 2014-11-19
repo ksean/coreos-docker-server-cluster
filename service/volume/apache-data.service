@@ -8,3 +8,6 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/apache-data
 ExecStart=/usr/bin/docker run --name %n -v /var/www ksean/apache-data /bin/bash
 ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+MachineOf=apache.service
