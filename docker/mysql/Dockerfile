@@ -12,8 +12,6 @@ ADD config/mysql /etc/mysql/conf.d/pass_config
 ADD start.bash /start.bash
 RUN chmod +x start.bash
 
-VOLUME ["/etc/mysql", "/data/mysql"]
-
 EXPOSE 3306
 
 ENTRYPOINT ["/start.bash"]
