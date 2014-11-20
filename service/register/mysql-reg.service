@@ -7,7 +7,7 @@ BindsTo=etcd-mysql.service
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull polvi/docker-register
-ExecStart=/usr/bin/docker run --link etcd-mysql.service:etcd -v /var/run/docker.sock:/var/run/docker.sock --rm polvi/docker-register mysql.service 3306 mysql-A
+ExecStart=/usr/bin/docker run --rm --link etcd-mysql.service:etcd -v /var/run/docker.sock:/var/run/docker.sock polvi/docker-register mysql.service 3306 mysql-A
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
