@@ -9,5 +9,4 @@ ExecStop=/usr/bin/docker save -o apache-log.tar ksean/apache-log
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-MachineOf=apache.service
 MachineID=e3e9a10d1650466db993fd7d2b8e2c1f

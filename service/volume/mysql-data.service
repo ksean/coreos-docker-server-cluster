@@ -9,5 +9,4 @@ ExecStop=/usr/bin/docker save -o mysql-data.tar ksean/mysql-data
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-MachineOf=mysql.service
 MachineID=9211af6959d14e36930ca4a4849872b8

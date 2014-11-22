@@ -11,6 +11,4 @@ ExecStart=/usr/bin/docker run --rm --name %n --restart=always -p ${COREOS_PUBLIC
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]
-Conflicts=apache.service
-Conflicts=mysql.service
 MachineID=3a43385e38d149a1ad09d8aeea147bc1

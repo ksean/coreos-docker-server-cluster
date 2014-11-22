@@ -10,3 +10,6 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/apache
 ExecStart=/usr/bin/docker run --rm --name %n --restart=always --volumes-from apache-log.service --volumes-from apache-data.service -p ${COREOS_PRIVATE_IPV4}::80 ksean/apache
 ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+MachineID=e3e9a10d1650466db993fd7d2b8e2c1f
