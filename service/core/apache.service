@@ -1,10 +1,12 @@
 [Unit]
-Description=Apache web server service
+Description=Apache web server
 
 [Service]
+TimeoutStartSec=0
+KillMode=none
 EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/apache
-ExecStart=/usr/bin/docker run --rm --name %n --volumes-from apache-log.service --volumes-from apache-data.service -p ${COREOS_PRIVATE_IPV4}::80 ksean/apache
+ExecStart=/usr/bin/docker run --rm --name %n --restart=always --volumes-from apache-log.service --volumes-from apache-data.service -p ${COREOS_PRIVATE_IPV4}::80 ksean/apache
 ExecStop=/usr/bin/docker stop -t 3 %n

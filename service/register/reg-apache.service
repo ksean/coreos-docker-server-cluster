@@ -4,10 +4,11 @@ After=etcd-apache.service
 BindsTo=etcd-apache.service
 
 [Service]
+KillMode=none
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull polvi/docker-register
-ExecStart=/usr/bin/docker run --link etcd-apache.service:etcd -v /var/run/docker.sock:/var/run/docker.sock --rm polvi/docker-register apache.service 80 apache-A
+ExecStart=/usr/bin/docker run --rm --name %n --restart=always --link etcd-apache.service:etcd -v /var/run/docker.sock:/var/run/docker.sock --rm polvi/docker-register apache.service 80 apache-A
 ExecStop=/usr/bin/docker stop -t 3 %n
 
 [X-Fleet]

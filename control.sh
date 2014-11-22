@@ -12,12 +12,12 @@ fi
 if [ "$1" = "mysql" ] || [ "$1" = "all" ]; then
     fleetctl $2 ./service/core/mysql.service
     fleetctl $2 ./service/etcd/etcd-mysql.service
-    fleetctl $2 ./service/register/mysql-reg.service
+    fleetctl $2 ./service/register/reg-mysql.service
 fi
 
 #Apache
 if [ "$1" = "apache" ] || [ "$1" = "all" ]; then
     fleetctl $2 ./service/core/apache.service
     fleetctl $2 ./service/etcd/etcd-apache.service
-    fleetctl $2 ./service/register/apache-reg.service
+    fleetctl $2 ./service/register/reg-apache.service
 fi
