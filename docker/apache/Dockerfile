@@ -13,6 +13,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 RUN a2enmod rewrite
 RUN a2enmod expires
 RUN a2enmod headers
+RUN a2enmod proxy
+RUN a2enmod proxy_http
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -25,7 +27,9 @@ EXPOSE 80
 # Add site config
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
 ADD vhost/kennedysean.conf /etc/apache2/sites-available/kennedysean.conf
+ADD vhost/kennedysean.conf /etc/apache2/sites-available/jenkins.conf
 RUN ln -s /etc/apache2/sites-available/kennedysean.conf /etc/apache2/sites-enabled/
+RUN ln -s /etc/apache2/sites-available/jenkins.conf /etc/apache2/sites-enabled/
 
 # Add apache config
 ADD apache2.conf /root/apache2.conf
