@@ -1,0 +1,16 @@
+[Unit]
+Description=Dynamic ambassador for Jenkins
+After=etcd-haproxy.service
+BindsTo=etcd-haproxy.service
+
+[Service]
+KillMode=none
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull polvi/dynamic-etcd-amb
+ExecStart=/usr/bin/docker run --rm --name %n --link etcd-haproxy.service:etcd -p ${COREOS_PRIVATE_IPV4}:8080:8080 polvi/dynamic-etcd-amb jenkins-A 8080
+ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+MachineOf=etcd-haproxy.service
