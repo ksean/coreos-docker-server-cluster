@@ -29,6 +29,5 @@ fi
 # Set backend IP address to machine's private IP address
 PRIVATE_IPV4=$(curl -sw "\n" http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address)
 sed -i -e "s/server apache private_ipv4:80 check/server apache ${PRIVATE_IPV4}:80 check/g" $HAPROXY/$CONFIG
-sed -i -e "s/server mysql private_ipv4:3306 check/server mysql ${PRIVATE_IPV4}:3306 check/g" $HAPROXY/$CONFIG
 
 haproxy -f /etc/haproxy/haproxy.cfg -p "$PIDFILE"
