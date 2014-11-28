@@ -1,13 +1,8 @@
-# Build using ubuntu 14.04 image
 FROM ubuntu:14.04
 
-# Author
 MAINTAINER ksean
 
-# Update packages
 RUN apt-get -y update
-
-# Install apache and php
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 RUN a2enmod rewrite
@@ -24,14 +19,14 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 
 EXPOSE 80
 
-# Add site config
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
+
 ADD vhost/kennedysean.conf /etc/apache2/sites-available/kennedysean.conf
 ADD vhost/kennedysean.conf /etc/apache2/sites-available/jenkins.conf
+
 RUN ln -s /etc/apache2/sites-available/kennedysean.conf /etc/apache2/sites-enabled/
 RUN ln -s /etc/apache2/sites-available/jenkins.conf /etc/apache2/sites-enabled/
 
-# Add apache config
 ADD apache2.conf /root/apache2.conf
 RUN cp -f /root/apache2.conf /etc/apache2
 
