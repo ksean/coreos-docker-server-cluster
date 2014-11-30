@@ -1,0 +1,9 @@
+[Unit]
+Description=Jenkins data volume
+
+[Service]
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=/usr/bin/docker pull ksean/jenkins-data
+ExecStart=/usr/bin/docker run --name %n -v /jenkins ksean/jenkins-data /bin/bash
+ExecStop=/usr/bin/docker save -o jenkins-data.tar ksean/jenkins-data
+ExecStop=/usr/bin/docker stop -t 3 %n
