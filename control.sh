@@ -29,11 +29,13 @@ if [ "$1" = "build" ]; then
     docker build --no-cache -t="ksean/apache-log" ./docker/apache/volume/log
     docker build --no-cache -t="ksean/haproxy" ./docker/haproxy
     docker build --no-cache -t="ksean/jenkins" ./docker/jenkins
+    docker build --no-cache -t="ksean/jenkins-data" ./docker/jenkins/volume/data
     docker build --no-cache -t="ksean/jenkins-log" ./docker/jenkins/volume/log
     docker push ksean/apache
     docker push ksean/apache-data
     docker push ksean/apache-log
     docker push ksean/haproxy
     docker push ksean/jenkins
+    docker push ksean/jenkins-data
     docker push ksean/jenkins-log
 fi
