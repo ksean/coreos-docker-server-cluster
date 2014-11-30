@@ -10,3 +10,6 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/jenkins
 ExecStart=/usr/bin/docker run --rm --name %n --volumes-from jenkins-log.service --volumes-from jenkins-data.service -m=786432 -p ${COREOS_PRIVATE_IPV4}::8080 ksean/jenkins
 ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+MachineID=9211af6959d14e36930ca4a4849872b8
