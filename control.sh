@@ -5,6 +5,7 @@ if [ "$1" = "haproxy" ] || [ "$1" = "all" ]; then
     fleetctl $2 ./service/core/haproxy.service
     fleetctl $2 ./service/etcd/etcd-haproxy.service
     fleetctl $2 ./service/dynamic/dyn-apache.service
+    fleetctl $2 ./service/dynamic/dyn-jenkins.service
 fi
 
 #Apache
