@@ -8,5 +8,5 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull ksean/jenkins
-ExecStart=/usr/bin/docker run --rm --name %n --volumes-from jenkins-log.service -p ${COREOS_PRIVATE_IPV4}::8080 ksean/jenkins
+ExecStart=/usr/bin/docker run --rm --name %n --volumes-from jenkins-log.service --volumes-from jenkins-data.service -p ${COREOS_PRIVATE_IPV4}::8080 ksean/jenkins
 ExecStop=/usr/bin/docker stop -t 3 %n
